@@ -12,7 +12,7 @@ firebase_request_adapter = requests.Request()
 
 import image
 
-config = {
+"""config = {
   "apiKey": "AIzaSyCgXzxKEx9aX8X3W5RcW12ogBtOp2mn_Fg",
   "authDomain": "carbide-ego-367216.firebaseapp.com",
 "databaseURL": "https://databaseName.firebaseio.com",
@@ -21,7 +21,16 @@ config = {
   "messagingSenderId": "521778265240",
   "appId": "1:521778265240:web:a2995a7d779269ea8fa4ed",
   "measurementId": "G-NE4CH1FRYV"
-}
+}"""
+
+config= {
+  "apiKey": "AIzaSyC2zPWX_-MEBd9qCAOQ4V7qjMWV2-fyMMw",
+  "authDomain": "minireddit-c45c6.firebaseapp.com",
+  "projectId": "minireddit-c45c6",
+  "storageBucket": "minireddit-c45c6.appspot.com",
+  "messagingSenderId": "911213281913",
+  "appId": "1:911213281913:web:1ec0ceecbaf8f27dac4aa8"
+};
 
 app = Flask(__name__)
 
