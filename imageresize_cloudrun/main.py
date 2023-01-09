@@ -106,31 +106,6 @@ def index():
 
     return ("", 500)
 
-@app.route("/gettoken", methods=["POST"])
-def gettoken():
-        
-    firebase = pyrebase.initialize_app(config)
-
-    auth = firebase.auth()
-    user = auth.sign_in_with_email_and_password("azrael1206@googlemail.com",'1qay2wsx!QAY"WSX')
-    if user:
-        print(user)
-        return jsonify(user)
-    else:
-        return ("Error authentication", 500)
-
-@app.route("/gettoken2", methods=["POST"])
-def gettoken2():
-        
-    firebase = pyrebase.initialize_app(config)
-
-    auth = firebase.auth()
-    user = auth.sign_in_with_email_and_password("test2@test.com",'12345678')
-    if user:
-        print(user)
-        return jsonify(user)
-    else:
-        return ("Error authentication", 500)
 
 if __name__ == "__main__":
     PORT = int(os.getenv("PORT")) if os.getenv("PORT") else 8080
