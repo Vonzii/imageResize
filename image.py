@@ -7,25 +7,15 @@ from google.auth import jwt
 from wand.image import Image
 
 
-"""config = {
-  "apiKey": "AIzaSyCgXzxKEx9aX8X3W5RcW12ogBtOp2mn_Fg",
-  "authDomain": "carbide-ego-367216.firebaseapp.com",
-  "projectId": "carbide-ego-367216",
-  "databaseURL": "https://databaseName.firebaseio.com",
-  "storageBucket": "carbide-ego-367216.appspot.com",
-  "messagingSenderId": "521778265240",
-  "appId": "1:521778265240:web:a2995a7d779269ea8fa4ed",
-  "measurementId": "G-NE4CH1FRYV"
-}"""
-
-config= {
-  "apiKey": "AIzaSyC2zPWX_-MEBd9qCAOQ4V7qjMWV2-fyMMw",
-  "authDomain": "minireddit-c45c6.firebaseapp.com",
-  "projectId": "minireddit-c45c6",
-  "storageBucket": "minireddit-c45c6.appspot.com",
-  "messagingSenderId": "911213281913",
-  "appId": "1:911213281913:web:1ec0ceecbaf8f27dac4aa8"
-};
+config = {
+    "databaseURL": "https://carbide-ego-367216-default-rtdb.europe-west1.firebasedatabase.app/",
+    "apiKey": "AIzaSyC2zPWX_-MEBd9qCAOQ4V7qjMWV2-fyMMw",
+    "authDomain": "minireddit-c45c6.firebaseapp.com",
+    "projectId": "minireddit-c45c6",
+    "storageBucket": "minireddit-c45c6.appspot.com",
+    "messagingSenderId": "911213281913",
+    "appId": "1:911213281913:web:1ec0ceecbaf8f27dac4aa8"
+}
 
 def resize_images(data, id_token, claims):
     file_data = data
@@ -68,7 +58,7 @@ def __resize_image(file_name, id_token, claims):
     # You could instead re-upload it to the same bucket + tell your function
     # to ignore files marked as blurred (e.g. those with a "blurred" prefix)
 
-    storage.child(f"{localId}/{filename}2.jpg").put(temp_local_filename, id_token)
+    storage.child(f"{localId}/{filename}.jpg").put(temp_local_filename, id_token)
  
     #storage.delete(f"{file_name}", id_token)
     # Delete the temporary file.
