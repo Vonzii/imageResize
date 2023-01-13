@@ -64,7 +64,6 @@ def index():
         msg = "no json received"
         print(f"error: {msg}")
         return f"Bad Request: {msg}", 400
-    print(json['id'])
     return image.resize_images(json, creds, claims)
 
 
