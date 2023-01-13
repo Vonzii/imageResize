@@ -6,6 +6,7 @@ from google.auth import jwt
 import google.oauth2.id_token
 import pyrebase
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from google.auth.transport import requests
 
 firebase_request_adapter = requests.Request()
@@ -33,6 +34,7 @@ config= {
 };
 
 app = Flask(__name__)
+CORS(app)
 
 
 @app.route("/", methods=["POST"])
