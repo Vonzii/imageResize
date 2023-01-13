@@ -16,7 +16,7 @@ import image
 """config = {
   "apiKey": "AIzaSyCgXzxKEx9aX8X3W5RcW12ogBtOp2mn_Fg",
   "authDomain": "carbide-ego-367216.firebaseapp.com",
-"databaseURL": "https://databaseName.firebaseio.com",
+  "databaseURL": "https://databaseName.firebaseio.com",
   "projectId": "carbide-ego-367216",
   "storageBucket": "carbide-ego-367216.appspot.com",
   "messagingSenderId": "521778265240",
