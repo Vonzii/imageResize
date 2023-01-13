@@ -63,4 +63,4 @@ def __resize_image(file_name, id_token, claims):
     #storage.delete(f"{file_name}", id_token)
     # Delete the temporary file.
     os.remove(temp_local_filename)
-
+    return f"{filename}.jpg", 200

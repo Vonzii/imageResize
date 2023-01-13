@@ -37,7 +37,6 @@ app = Flask(__name__)
 
 @app.route("/", methods=["POST"])
 def index():
-    print("Get connection\n")
     auth_header = request.headers.get("Authorization")
     if auth_header:
         auth_type, creds = auth_header.split(" ", 1)
@@ -45,7 +44,6 @@ def index():
             try:
                 claims = google.oauth2.id_token.verify_firebase_token(
                     creds, firebase_request_adapter)
-                print(f"{claims}")
             except ValueError as exc:
                 msg = "error Authorization"
                 print(f"error: {msg}, {exc}")
@@ -57,54 +55,15 @@ def index():
     else:
         msg = "error no Authorization found in header"
         print(f"error: {msg}")
-        return f"Bad Request: {msg}", 400       
-
-    envelope = request.get_json()
-    print(f"Find Json\n")
-    if not envelope:
-        msg = "no Pub/Sub message received"
-        print(f"error: {msg}")
         return f"Bad Request: {msg}", 400
 
-    print(f"Find Pub/Sub message\n")
-    if not isinstance(envelope, dict) or "message" not in envelope:
-        msg = "invalid Pub/Sub message format"
+    json = request.get_json()
+    if not json:
+        msg = "no json received"
         print(f"error: {msg}")
         return f"Bad Request: {msg}", 400
-
-    pubsub_message = envelope["message"]
-    print(f"try to decode\n")
-    if isinstance(pubsub_message, dict) and "data" in pubsub_message:
-        try:
-            print(f"Decode base64\n")
-            data = json.loads(base64.b64decode(pubsub_message["data"]).decode())
-
-        except Exception as e:
-            msg = (
-                "Invalid Pub/Sub message: "
-                "data property is not valid base64 encoded JSON"
-            )
-            print(f"error: {e}")
-            return f"Bad Request: {msg}", 400
-
-        # Validate the message is a Cloud Storage event.
-        if not data["name"] or not data["bucket"]:
-            msg = (
-                "Invalid Cloud Storage notification: "
-                "expected name and bucket properties"
-            )
-            print(f"error: {msg}")
-            return f"Bad Request: {msg}", 400
-
-        try:
-            image.resize_images(data, creds, claims)
-            return ("", 204)
-
-        except Exception as e:
-            print(f"error: {e}")
-            return ("", 500)
-
-    return ("", 500)
+    print(json['id'])
+    return image.resize_images(json, creds, claims)
 
 
 if __name__ == "__main__":
